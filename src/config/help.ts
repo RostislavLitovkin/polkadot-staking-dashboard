@@ -1,4 +1,4 @@
-// Copyright 2024 @paritytech/polkadot-staking-dashboard authors & contributors
+// Copyright 2024 @polkadot-cloud/polkadot-staking-dashboard authors & contributors
 // SPDX-License-Identifier: GPL-3.0-only
 
 import type { HelpItems } from 'contexts/Help/types';
@@ -126,7 +126,6 @@ export const HelpConfig: HelpItems = [
       'Self Stake',
       'Nominator Stake',
       'Commission',
-      'Over Subscribed',
       'Blocked Nominations',
       'Rewards By Country And Network',
     ],

@@ -1,4 +1,4 @@
-// Copyright 2024 @paritytech/polkadot-staking-dashboard authors & contributors
+// Copyright 2024 @polkadot-cloud/polkadot-staking-dashboard authors & contributors
 // SPDX-License-Identifier: GPL-3.0-only
 
 import BigNumber from 'bignumber.js';
@@ -8,7 +8,7 @@ import { DappName, ManualSigners } from 'consts';
 import { useApi } from 'contexts/Api';
 import { useLedgerHardware } from 'contexts/LedgerHardware';
 import { useTxMeta } from 'contexts/TxMeta';
-import type { AnyApi, AnyJson } from 'types';
+import type { AnyApi } from 'types';
 import { useActiveAccounts } from 'contexts/ActiveAccounts';
 import { useImportedAccounts } from 'contexts/Connect/ImportedAccounts';
 import { useBuildPayload } from '../useBuildPayload';
@@ -37,10 +37,10 @@ export const useSubmitExtrinsic = ({
     txFees,
     setTxFees,
     setSender,
-    getTxPayload,
+    getTxPayloadValue,
     getTxSignature,
     setTxSignature,
-    resetTxPayloads,
+    resetTxPayload,
     incrementPayloadUid,
   } = useTxMeta();
 
@@ -193,7 +193,7 @@ export const useSubmitExtrinsic = ({
     };
 
     const resetTx = () => {
-      resetTxPayloads();
+      resetTxPayload();
       setTxSignature(null);
       setSubmitting(false);
     };
@@ -229,13 +229,17 @@ export const useSubmitExtrinsic = ({
     // pre-submission state update
     setSubmitting(true);
 
-    const txPayload: AnyJson = getTxPayload();
-    const txSignature: AnyJson = getTxSignature();
+    const txPayloadValue = getTxPayloadValue();
+    const txSignature = getTxSignature();
 
     // handle signed transaction.
     if (getTxSignature()) {
       try {
-        txRef.current.addSignature(fromRef.current, txSignature, txPayload);
+        txRef.current.addSignature(
+          fromRef.current,
+          txSignature,
+          txPayloadValue
+        );
 
         const unsub = await txRef.current.send(
           ({ status, events = [] }: AnyApi) => {
@@ -264,7 +268,7 @@ export const useSubmitExtrinsic = ({
       try {
         const unsub = await txRef.current.signAndSend(
           fromRef.current,
-          { signer },
+          { signer, withSignedTransaction: true },
           ({ status, events = [] }: AnyApi) => {
             if (!didTxReset.current) {
               didTxReset.current = true;

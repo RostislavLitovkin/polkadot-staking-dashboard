@@ -1,4 +1,4 @@
-// Copyright 2024 @paritytech/polkadot-staking-dashboard authors & contributors
+// Copyright 2024 @polkadot-cloud/polkadot-staking-dashboard authors & contributors
 // SPDX-License-Identifier: GPL-3.0-only
 
 import type {
@@ -18,9 +18,6 @@ export class SubscanController {
   // ------------------------------------------------------
   // Class members.
   // ------------------------------------------------------
-
-  // Public Subscan API Key.
-  static API_KEY = 'd37149339f64775155a82a53f4253b27';
 
   // List of endpoints to be used for Subscan API calls.
   static ENDPOINTS = {
@@ -323,7 +320,6 @@ export class SubscanController {
     const res: Response = await fetch(this.getEndpoint() + endpoint, {
       headers: {
         'Content-Type': 'application/json',
-        'X-API-Key': this.API_KEY,
       },
       body: JSON.stringify(body),
       method: 'POST',

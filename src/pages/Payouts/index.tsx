@@ -1,4 +1,4 @@
-// Copyright 2024 @paritytech/polkadot-staking-dashboard authors & contributors
+// Copyright 2024 @polkadot-cloud/polkadot-staking-dashboard authors & contributors
 // SPDX-License-Identifier: GPL-3.0-only
 
 import { PageRow } from 'kits/Structure/PageRow';
@@ -69,7 +69,10 @@ export const Payouts = ({ page: { key } }: PageProps) => {
         (data?.payouts || []).concat(data?.poolClaims || [])
       )
     );
-  }, [data?.payouts?.length, data?.poolClaims?.length]);
+  }, [
+    JSON.stringify(data?.payouts || {}),
+    JSON.stringify(data?.poolClaims || {}),
+  ]);
 
   return (
     <>

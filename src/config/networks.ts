@@ -1,15 +1,12 @@
-// Copyright 2024 @paritytech/polkadot-staking-dashboard authors & contributors
+// Copyright 2024 @polkadot-cloud/polkadot-staking-dashboard authors & contributors
 // SPDX-License-Identifier: GPL-3.0-only
 
 import KusamaIconSVG from 'img/kusama_icon.svg?react';
 import KusamaInlineSVG from 'img/kusama_inline.svg?react';
-import KusamaLogoSVG from 'img/kusama_logo.svg?react';
 import PolkadotIconSVG from 'img/polkadot_icon.svg?react';
 import PolkadotInlineSVG from 'img/polkadot_inline.svg?react';
-import PolkadotLogoSVG from 'img/polkadot_logo.svg?react';
 import WestendIconSVG from 'img/westend_icon.svg?react';
 import WestendInlineSVG from 'img/westend_inline.svg?react';
-import WestendLogoSVG from 'img/westend_logo.svg?react';
 import PolkadotTokenSVG from 'config/tokens/svg/DOT.svg?react';
 import KusamaTokenSVG from 'config/tokens/svg/KSM.svg?react';
 import WestendTokenSVG from 'config/tokens/svg/WND.svg?react';
@@ -19,10 +16,15 @@ import BigNumber from 'bignumber.js';
 
 // DEPRECATION: Paged Rewards
 //
-// Temporary until paged rewards migration has completed on all networks.
-export const NetworksWithPagedRewards: NetworkName[] = ['westend', 'kusama'];
+// Temporary until paged rewards migration has completed on all networks. Wait 84 eras from Polkadot
+// start: 1420 + 84 = 1504, when full history depth will be moved over to new paged rewards storage.
+export const NetworksWithPagedRewards: NetworkName[] = [
+  'polkadot',
+  'kusama',
+  'westend',
+];
 export const PagedRewardsStartEra: Record<NetworkName, BigNumber | null> = {
-  polkadot: null,
+  polkadot: new BigNumber(1420),
   kusama: new BigNumber(6514),
   westend: new BigNumber(7167),
 };
@@ -73,10 +75,6 @@ export const NetworkList: Networks = {
     brand: {
       icon: PolkadotIconSVG,
       token: PolkadotTokenSVG,
-      logo: {
-        svg: PolkadotLogoSVG,
-        width: '7.2em',
-      },
       inline: {
         svg: PolkadotInlineSVG,
         size: '1.05em',
@@ -134,10 +132,6 @@ export const NetworkList: Networks = {
     brand: {
       icon: KusamaIconSVG,
       token: KusamaTokenSVG,
-      logo: {
-        svg: KusamaLogoSVG,
-        width: '7.2em',
-      },
       inline: {
         svg: KusamaInlineSVG,
         size: '1.35em',
@@ -194,10 +188,6 @@ export const NetworkList: Networks = {
     brand: {
       icon: WestendIconSVG,
       token: WestendTokenSVG,
-      logo: {
-        svg: WestendLogoSVG,
-        width: '7.1em',
-      },
       inline: {
         svg: WestendInlineSVG,
         size: '0.96em',

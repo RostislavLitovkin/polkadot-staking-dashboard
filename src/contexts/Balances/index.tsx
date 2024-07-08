@@ -1,4 +1,4 @@
-// Copyright 2024 @paritytech/polkadot-staking-dashboard authors & contributors
+// Copyright 2024 @polkadot-cloud/polkadot-staking-dashboard authors & contributors
 // SPDX-License-Identifier: GPL-3.0-only
 
 import type { ReactNode } from 'react';
@@ -32,7 +32,7 @@ export const BalancesProvider = ({ children }: { children: ReactNode }) => {
   const { activeAccount, activeProxy } = useActiveAccounts();
   const controller = getBondedAccount(activeAccount);
 
-  // Listen to balance updates for the active account, active proxy and controller..
+  // Listen to balance updates for the active account, active proxy and controller.
   const {
     activeBalances,
     getLocks,

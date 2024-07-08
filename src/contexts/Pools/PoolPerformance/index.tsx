@@ -1,4 +1,4 @@
-// Copyright 2024 @paritytech/polkadot-staking-dashboard authors & contributors
+// Copyright 2024 @polkadot-cloud/polkadot-staking-dashboard authors & contributors
 // SPDX-License-Identifier: GPL-3.0-only
 
 import type { ReactNode } from 'react';
@@ -24,7 +24,7 @@ import {
   defaultPoolPerformanceTask,
   defaultPoolPerformanceContext,
 } from './defaults';
-import type { Sync } from 'types';
+import type { Sync } from '@w3ux/types';
 
 const worker = new Worker();
 

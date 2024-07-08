@@ -1,4 +1,4 @@
-// Copyright 2024 @paritytech/polkadot-staking-dashboard authors & contributors
+// Copyright 2024 @polkadot-cloud/polkadot-staking-dashboard authors & contributors
 // SPDX-License-Identifier: GPL-3.0-only
 
 import { ArcElement, Chart as ChartJS, Legend, Tooltip } from 'chart.js';
@@ -9,7 +9,7 @@ import chroma from 'chroma-js';
 import { ellipsisFn } from '@w3ux/utils';
 import { useNetwork } from 'contexts/Network';
 import type { GeoDonutProps } from './types';
-import type { AnyJson } from 'types';
+import type { AnyJson } from '@w3ux/types';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
